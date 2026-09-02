@@ -7,7 +7,7 @@ import groupRoutes from "./routes/group.routes";
 import expenseRoutes from "./routes/expense.routes";
 import settlementRoutes from "./routes/settlement.routes";
 import settlementPaymentRoutes from "./routes/settlementPayment.routes";
-
+import walletRoutes from "./routes/wallet.routes";
 
 const app = express();
 
@@ -31,6 +31,8 @@ app.use("/api", expenseRoutes);
 app.use("/api/groups", settlementRoutes);
 
 app.use("/api", settlementPaymentRoutes);
+
+app.use("/api", walletRoutes);
 
 
 export default app;

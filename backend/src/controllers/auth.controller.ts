@@ -82,10 +82,14 @@ export const register = async (
           id: newUser.id,
           name: newUser.name,
           email: newUser.email,
-          balance: wallet.balance,
+          wallet: {
+            id: wallet.id,
+            balance: wallet.balance,
+          },
         };
       },
     );
+
 
     return res.status(201).json({
       success: true,
@@ -162,12 +166,17 @@ const loginSchema = z.object({
         success: true,
         message: "Login successful",
         token,
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          balance: user.wallet?.balance,
-        },
+       user: {
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  wallet: user.wallet
+    ? {
+        id: user.wallet.id,
+        balance: user.wallet.balance,
+      }
+    : null,
+},
       });
     } catch (error) {
       console.error("Login error:", error);
@@ -225,8 +234,14 @@ export const getMe = async (
         id: user.id,
         name: user.name,
         email: user.email,
-        balance: user.wallet?.balance,
+        wallet: user.wallet
+          ? {
+              id: user.wallet.id,
+              balance: user.wallet.balance,
+            }
+          : null,
       },
+      
     });
   } catch (error) {
     console.error("Get me error:", error);
