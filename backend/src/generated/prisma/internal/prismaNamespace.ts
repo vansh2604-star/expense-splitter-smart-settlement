@@ -1084,7 +1084,8 @@ export const WalletTransactionScalarFieldEnum = {
   type: 'type',
   reason: 'reason',
   createdAt: 'createdAt',
-  walletId: 'walletId'
+  walletId: 'walletId',
+  relatedUserId: 'relatedUserId'
 } as const
 
 export type WalletTransactionScalarFieldEnum = (typeof WalletTransactionScalarFieldEnum)[keyof typeof WalletTransactionScalarFieldEnum]

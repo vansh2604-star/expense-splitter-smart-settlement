@@ -197,6 +197,7 @@ export type UserWhereInput = {
   expenseSplits?: Prisma.ExpenseSplitListRelationFilter
   sentSettlements?: Prisma.SettlementPaymentListRelationFilter
   receivedSettlements?: Prisma.SettlementPaymentListRelationFilter
+  relatedWalletTransactions?: Prisma.WalletTransactionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -213,6 +214,7 @@ export type UserOrderByWithRelationInput = {
   expenseSplits?: Prisma.ExpenseSplitOrderByRelationAggregateInput
   sentSettlements?: Prisma.SettlementPaymentOrderByRelationAggregateInput
   receivedSettlements?: Prisma.SettlementPaymentOrderByRelationAggregateInput
+  relatedWalletTransactions?: Prisma.WalletTransactionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -232,6 +234,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   expenseSplits?: Prisma.ExpenseSplitListRelationFilter
   sentSettlements?: Prisma.SettlementPaymentListRelationFilter
   receivedSettlements?: Prisma.SettlementPaymentListRelationFilter
+  relatedWalletTransactions?: Prisma.WalletTransactionListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -272,6 +275,7 @@ export type UserCreateInput = {
   expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -288,6 +292,7 @@ export type UserUncheckedCreateInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUpdateInput = {
@@ -304,6 +309,7 @@ export type UserUpdateInput = {
   expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -320,6 +326,7 @@ export type UserUncheckedUpdateInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -381,6 +388,11 @@ export type UserScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -401,6 +413,22 @@ export type UserUpdateOneRequiredWithoutWalletNestedInput = {
   upsert?: Prisma.UserUpsertWithoutWalletInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWalletInput, Prisma.UserUpdateWithoutWalletInput>, Prisma.UserUncheckedUpdateWithoutWalletInput>
+}
+
+export type UserCreateNestedOneWithoutRelatedWalletTransactionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRelatedWalletTransactionsInput, Prisma.UserUncheckedCreateWithoutRelatedWalletTransactionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRelatedWalletTransactionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutRelatedWalletTransactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutRelatedWalletTransactionsInput, Prisma.UserUncheckedCreateWithoutRelatedWalletTransactionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutRelatedWalletTransactionsInput
+  upsert?: Prisma.UserUpsertWithoutRelatedWalletTransactionsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutRelatedWalletTransactionsInput, Prisma.UserUpdateWithoutRelatedWalletTransactionsInput>, Prisma.UserUncheckedUpdateWithoutRelatedWalletTransactionsInput>
 }
 
 export type UserCreateNestedOneWithoutCreatedGroupsInput = {
@@ -500,6 +528,7 @@ export type UserCreateWithoutWalletInput = {
   expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateWithoutWalletInput = {
@@ -515,6 +544,7 @@ export type UserUncheckedCreateWithoutWalletInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserCreateOrConnectWithoutWalletInput = {
@@ -546,6 +576,7 @@ export type UserUpdateWithoutWalletInput = {
   expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWalletInput = {
@@ -555,6 +586,87 @@ export type UserUncheckedUpdateWithoutWalletInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdGroups?: Prisma.GroupUncheckedUpdateManyWithoutCreatedByNestedInput
+  groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutUserNestedInput
+  expensesPaid?: Prisma.ExpenseUncheckedUpdateManyWithoutPaidByNestedInput
+  expenseSplits?: Prisma.ExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
+  sentSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutFromUserNestedInput
+  receivedSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
+}
+
+export type UserCreateWithoutRelatedWalletTransactionsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  wallet?: Prisma.WalletCreateNestedOneWithoutUserInput
+  createdGroups?: Prisma.GroupCreateNestedManyWithoutCreatedByInput
+  groupMembers?: Prisma.GroupMemberCreateNestedManyWithoutUserInput
+  expensesPaid?: Prisma.ExpenseCreateNestedManyWithoutPaidByInput
+  expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
+  sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
+  receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+}
+
+export type UserUncheckedCreateWithoutRelatedWalletTransactionsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  wallet?: Prisma.WalletUncheckedCreateNestedOneWithoutUserInput
+  createdGroups?: Prisma.GroupUncheckedCreateNestedManyWithoutCreatedByInput
+  groupMembers?: Prisma.GroupMemberUncheckedCreateNestedManyWithoutUserInput
+  expensesPaid?: Prisma.ExpenseUncheckedCreateNestedManyWithoutPaidByInput
+  expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
+  sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
+  receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+}
+
+export type UserCreateOrConnectWithoutRelatedWalletTransactionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutRelatedWalletTransactionsInput, Prisma.UserUncheckedCreateWithoutRelatedWalletTransactionsInput>
+}
+
+export type UserUpsertWithoutRelatedWalletTransactionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutRelatedWalletTransactionsInput, Prisma.UserUncheckedUpdateWithoutRelatedWalletTransactionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutRelatedWalletTransactionsInput, Prisma.UserUncheckedCreateWithoutRelatedWalletTransactionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutRelatedWalletTransactionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutRelatedWalletTransactionsInput, Prisma.UserUncheckedUpdateWithoutRelatedWalletTransactionsInput>
+}
+
+export type UserUpdateWithoutRelatedWalletTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wallet?: Prisma.WalletUpdateOneWithoutUserNestedInput
+  createdGroups?: Prisma.GroupUpdateManyWithoutCreatedByNestedInput
+  groupMembers?: Prisma.GroupMemberUpdateManyWithoutUserNestedInput
+  expensesPaid?: Prisma.ExpenseUpdateManyWithoutPaidByNestedInput
+  expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
+  sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
+  receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutRelatedWalletTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  wallet?: Prisma.WalletUncheckedUpdateOneWithoutUserNestedInput
   createdGroups?: Prisma.GroupUncheckedUpdateManyWithoutCreatedByNestedInput
   groupMembers?: Prisma.GroupMemberUncheckedUpdateManyWithoutUserNestedInput
   expensesPaid?: Prisma.ExpenseUncheckedUpdateManyWithoutPaidByNestedInput
@@ -576,6 +688,7 @@ export type UserCreateWithoutCreatedGroupsInput = {
   expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateWithoutCreatedGroupsInput = {
@@ -591,6 +704,7 @@ export type UserUncheckedCreateWithoutCreatedGroupsInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserCreateOrConnectWithoutCreatedGroupsInput = {
@@ -622,6 +736,7 @@ export type UserUpdateWithoutCreatedGroupsInput = {
   expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCreatedGroupsInput = {
@@ -637,6 +752,7 @@ export type UserUncheckedUpdateWithoutCreatedGroupsInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserCreateWithoutGroupMembersInput = {
@@ -652,6 +768,7 @@ export type UserCreateWithoutGroupMembersInput = {
   expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateWithoutGroupMembersInput = {
@@ -667,6 +784,7 @@ export type UserUncheckedCreateWithoutGroupMembersInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserCreateOrConnectWithoutGroupMembersInput = {
@@ -698,6 +816,7 @@ export type UserUpdateWithoutGroupMembersInput = {
   expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGroupMembersInput = {
@@ -713,6 +832,7 @@ export type UserUncheckedUpdateWithoutGroupMembersInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserCreateWithoutExpensesPaidInput = {
@@ -728,6 +848,7 @@ export type UserCreateWithoutExpensesPaidInput = {
   expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateWithoutExpensesPaidInput = {
@@ -743,6 +864,7 @@ export type UserUncheckedCreateWithoutExpensesPaidInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserCreateOrConnectWithoutExpensesPaidInput = {
@@ -774,6 +896,7 @@ export type UserUpdateWithoutExpensesPaidInput = {
   expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutExpensesPaidInput = {
@@ -789,6 +912,7 @@ export type UserUncheckedUpdateWithoutExpensesPaidInput = {
   expenseSplits?: Prisma.ExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserCreateWithoutExpenseSplitsInput = {
@@ -804,6 +928,7 @@ export type UserCreateWithoutExpenseSplitsInput = {
   expensesPaid?: Prisma.ExpenseCreateNestedManyWithoutPaidByInput
   sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateWithoutExpenseSplitsInput = {
@@ -819,6 +944,7 @@ export type UserUncheckedCreateWithoutExpenseSplitsInput = {
   expensesPaid?: Prisma.ExpenseUncheckedCreateNestedManyWithoutPaidByInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserCreateOrConnectWithoutExpenseSplitsInput = {
@@ -850,6 +976,7 @@ export type UserUpdateWithoutExpenseSplitsInput = {
   expensesPaid?: Prisma.ExpenseUpdateManyWithoutPaidByNestedInput
   sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutExpenseSplitsInput = {
@@ -865,6 +992,7 @@ export type UserUncheckedUpdateWithoutExpenseSplitsInput = {
   expensesPaid?: Prisma.ExpenseUncheckedUpdateManyWithoutPaidByNestedInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutFromUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserCreateWithoutSentSettlementsInput = {
@@ -880,6 +1008,7 @@ export type UserCreateWithoutSentSettlementsInput = {
   expensesPaid?: Prisma.ExpenseCreateNestedManyWithoutPaidByInput
   expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
   receivedSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateWithoutSentSettlementsInput = {
@@ -895,6 +1024,7 @@ export type UserUncheckedCreateWithoutSentSettlementsInput = {
   expensesPaid?: Prisma.ExpenseUncheckedCreateNestedManyWithoutPaidByInput
   expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutToUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserCreateOrConnectWithoutSentSettlementsInput = {
@@ -915,6 +1045,7 @@ export type UserCreateWithoutReceivedSettlementsInput = {
   expensesPaid?: Prisma.ExpenseCreateNestedManyWithoutPaidByInput
   expenseSplits?: Prisma.ExpenseSplitCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentCreateNestedManyWithoutFromUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserUncheckedCreateWithoutReceivedSettlementsInput = {
@@ -930,6 +1061,7 @@ export type UserUncheckedCreateWithoutReceivedSettlementsInput = {
   expensesPaid?: Prisma.ExpenseUncheckedCreateNestedManyWithoutPaidByInput
   expenseSplits?: Prisma.ExpenseSplitUncheckedCreateNestedManyWithoutUserInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedCreateNestedManyWithoutFromUserInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedCreateNestedManyWithoutRelatedUserInput
 }
 
 export type UserCreateOrConnectWithoutReceivedSettlementsInput = {
@@ -961,6 +1093,7 @@ export type UserUpdateWithoutSentSettlementsInput = {
   expensesPaid?: Prisma.ExpenseUpdateManyWithoutPaidByNestedInput
   expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSentSettlementsInput = {
@@ -976,6 +1109,7 @@ export type UserUncheckedUpdateWithoutSentSettlementsInput = {
   expensesPaid?: Prisma.ExpenseUncheckedUpdateManyWithoutPaidByNestedInput
   expenseSplits?: Prisma.ExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   receivedSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutToUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUpsertWithoutReceivedSettlementsInput = {
@@ -1002,6 +1136,7 @@ export type UserUpdateWithoutReceivedSettlementsInput = {
   expensesPaid?: Prisma.ExpenseUpdateManyWithoutPaidByNestedInput
   expenseSplits?: Prisma.ExpenseSplitUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUpdateManyWithoutFromUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUpdateManyWithoutRelatedUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutReceivedSettlementsInput = {
@@ -1017,6 +1152,7 @@ export type UserUncheckedUpdateWithoutReceivedSettlementsInput = {
   expensesPaid?: Prisma.ExpenseUncheckedUpdateManyWithoutPaidByNestedInput
   expenseSplits?: Prisma.ExpenseSplitUncheckedUpdateManyWithoutUserNestedInput
   sentSettlements?: Prisma.SettlementPaymentUncheckedUpdateManyWithoutFromUserNestedInput
+  relatedWalletTransactions?: Prisma.WalletTransactionUncheckedUpdateManyWithoutRelatedUserNestedInput
 }
 
 
@@ -1031,6 +1167,7 @@ export type UserCountOutputType = {
   expenseSplits: number
   sentSettlements: number
   receivedSettlements: number
+  relatedWalletTransactions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1040,6 +1177,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   expenseSplits?: boolean | UserCountOutputTypeCountExpenseSplitsArgs
   sentSettlements?: boolean | UserCountOutputTypeCountSentSettlementsArgs
   receivedSettlements?: boolean | UserCountOutputTypeCountReceivedSettlementsArgs
+  relatedWalletTransactions?: boolean | UserCountOutputTypeCountRelatedWalletTransactionsArgs
 }
 
 /**
@@ -1094,6 +1232,13 @@ export type UserCountOutputTypeCountReceivedSettlementsArgs<ExtArgs extends runt
   where?: Prisma.SettlementPaymentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountRelatedWalletTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WalletTransactionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1109,6 +1254,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   expenseSplits?: boolean | Prisma.User$expenseSplitsArgs<ExtArgs>
   sentSettlements?: boolean | Prisma.User$sentSettlementsArgs<ExtArgs>
   receivedSettlements?: boolean | Prisma.User$receivedSettlementsArgs<ExtArgs>
+  relatedWalletTransactions?: boolean | Prisma.User$relatedWalletTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1148,6 +1294,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   expenseSplits?: boolean | Prisma.User$expenseSplitsArgs<ExtArgs>
   sentSettlements?: boolean | Prisma.User$sentSettlementsArgs<ExtArgs>
   receivedSettlements?: boolean | Prisma.User$receivedSettlementsArgs<ExtArgs>
+  relatedWalletTransactions?: boolean | Prisma.User$relatedWalletTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1163,6 +1310,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     expenseSplits: Prisma.$ExpenseSplitPayload<ExtArgs>[]
     sentSettlements: Prisma.$SettlementPaymentPayload<ExtArgs>[]
     receivedSettlements: Prisma.$SettlementPaymentPayload<ExtArgs>[]
+    relatedWalletTransactions: Prisma.$WalletTransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1572,6 +1720,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   expenseSplits<T extends Prisma.User$expenseSplitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$expenseSplitsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExpenseSplitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sentSettlements<T extends Prisma.User$sentSettlementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentSettlementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettlementPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   receivedSettlements<T extends Prisma.User$receivedSettlementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedSettlementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SettlementPaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  relatedWalletTransactions<T extends Prisma.User$relatedWalletTransactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$relatedWalletTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WalletTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2160,6 +2309,30 @@ export type User$receivedSettlementsArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.SettlementPaymentScalarFieldEnum | Prisma.SettlementPaymentScalarFieldEnum[]
+}
+
+/**
+ * User.relatedWalletTransactions
+ */
+export type User$relatedWalletTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WalletTransaction
+   */
+  select?: Prisma.WalletTransactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WalletTransaction
+   */
+  omit?: Prisma.WalletTransactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WalletTransactionInclude<ExtArgs> | null
+  where?: Prisma.WalletTransactionWhereInput
+  orderBy?: Prisma.WalletTransactionOrderByWithRelationInput | Prisma.WalletTransactionOrderByWithRelationInput[]
+  cursor?: Prisma.WalletTransactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WalletTransactionScalarFieldEnum | Prisma.WalletTransactionScalarFieldEnum[]
 }
 
 /**

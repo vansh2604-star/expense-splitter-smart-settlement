@@ -15,17 +15,28 @@ export const getWalletTransactions = async (
     }
 
     const wallet = await prisma.wallet.findUnique({
-      where: {
-        userId: req.userId,
-      },
-      include: {
-        transactions: {
-          orderBy: {
-            createdAt: "desc",
+        where: {
+          userId: req.userId,
+        },
+        include: {
+          transactions: {
+            orderBy: {
+              createdAt: "desc",
+            },
+            include: {
+              relatedUser: {
+                select: {
+                  id: true,
+                  name: true,
+                  email: true,
+                },
+              },
+            },
           },
         },
-      },
-    });
+      });
+
+
 
     if (!wallet) {
       return res.status(404).json({
@@ -46,9 +57,16 @@ export const getWalletTransactions = async (
         type: transaction.type,
         reason: transaction.reason,
         createdAt: transaction.createdAt,
-      })),
+
+        relatedUser: transaction.relatedUser
+      ? {
+          name: transaction.relatedUser.name,
+          email: transaction.relatedUser.email,
+        }
+      : null,
 
       
+      })),
     });
   } catch (error) {
     console.error("Get wallet transactions error:", error);

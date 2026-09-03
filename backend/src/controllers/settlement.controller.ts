@@ -229,7 +229,6 @@ export const getGroupSettlements = async (
       members.map((member) => [
         member.userId,
         {
-          id: member.user.id,
           name: member.user.name,
           email: member.user.email,
         },
@@ -253,7 +252,6 @@ export const getGroupSettlements = async (
     return res.status(200).json({
       success: true,
       group: {
-        id: group.id,
         name: group.name,
       },
       balances: balanceDetails,
