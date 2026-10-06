@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch src/server.ts",
+    "build": "bunx prisma generate && bunx prisma db push",
     "start": "bun src/server.ts"
   },
   "dependencies": {
