@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "bun --watch src/server.ts",
-    "build": "bunx prisma generate && bunx prisma db push",
-    "start": "bun src/server.ts"
+    "build": "bunx prisma generate",
+    "start": "bunx prisma db push --skip-generate && bun src/server.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",
