@@ -252,3 +252,90 @@ export const getMe = async (
     });
   }
 };
+
+const googleLoginSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  name: z.string().min(1, "Name is required"),
+});
+
+export const googleLogin = async (req: Request, res: Response) => {
+  try {
+    const { email, name } = googleLoginSchema.parse(req.body);
+
+    let user = await prisma.user.findUnique({
+      where: { email },
+      include: { wallet: true },
+    });
+
+    if (!user) {
+      // Auto-register google user with welcome bonus
+      const hashedPassword = await bcrypt.hash(`google_${Date.now()}_${Math.random()}`, 10);
+      user = await prisma.$transaction(async (tx) => {
+        const newUser = await tx.user.create({
+          data: {
+            name,
+            email,
+            password: hashedPassword,
+          },
+        });
+
+        const wallet = await tx.wallet.create({
+          data: {
+            userId: newUser.id,
+            balance: 1000,
+          },
+        });
+
+        await tx.walletTransaction.create({
+          data: {
+            walletId: wallet.id,
+            amount: 1000,
+            type: "INITIAL_CREDIT",
+            reason: "Welcome bonus: 1000 Demo Credits",
+          },
+        });
+
+        return {
+          ...newUser,
+          wallet,
+        };
+      });
+    }
+
+    const token = jwt.sign(
+      { userId: user.id },
+      process.env.JWT_SECRET!,
+      { expiresIn: "7d" }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: "Google login successful",
+      token,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        wallet: user.wallet
+          ? {
+              id: user.wallet.id,
+              balance: user.wallet.balance,
+            }
+          : null,
+      },
+    });
+  } catch (error) {
+    console.error("Google login error:", error);
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors: error.issues,
+      });
+    }
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};

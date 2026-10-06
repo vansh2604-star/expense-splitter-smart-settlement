@@ -229,6 +229,7 @@ export const getGroupSettlements = async (
       members.map((member) => [
         member.userId,
         {
+          id: member.user.id,
           name: member.user.name,
           email: member.user.email,
         },
@@ -238,12 +239,15 @@ export const getGroupSettlements = async (
     // Derived from the SAME balanceCentsMap used for settlements above,
     // so displayed balances always match what the settlements imply.
     const balanceDetails = members.map((member) => ({
+      userId: member.userId,
       user: memberMap.get(member.userId),
       balance: (balanceCentsMap.get(member.userId) ?? 0) / 100,
     }));
 
     // Add user details to settlements
     const settlementDetails = settlements.map((settlement) => ({
+      fromUserId: settlement.fromUserId,
+      toUserId: settlement.toUserId,
       from: memberMap.get(settlement.fromUserId),
       to: memberMap.get(settlement.toUserId),
       amount: settlement.amount,

@@ -78,3 +78,75 @@ export const getWalletTransactions = async (
   }
 };
 
+export const topupWallet = async (
+  req: AuthRequest,
+  res: Response
+) => {
+  try {
+    if (!req.userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+    }
+
+    const { amount } = req.body;
+    const numAmount = Number(amount);
+
+    if (!Number.isFinite(numAmount) || numAmount <= 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Top-up amount must be greater than 0",
+      });
+    }
+
+    const topupAmount = Math.round(numAmount * 100) / 100;
+
+    const result = await prisma.$transaction(async (tx) => {
+      const wallet = await tx.wallet.findUnique({
+        where: { userId: req.userId },
+      });
+
+      if (!wallet) {
+        throw new Error("Wallet not found");
+      }
+
+      const updatedWallet = await tx.wallet.update({
+        where: { id: wallet.id },
+        data: {
+          balance: {
+            increment: topupAmount,
+          },
+        },
+      });
+
+      const transaction = await tx.walletTransaction.create({
+        data: {
+          walletId: wallet.id,
+          amount: topupAmount,
+          type: "CREDIT",
+          reason: `Demo balance top-up (+₹${topupAmount})`,
+        },
+      });
+
+      return { updatedWallet, transaction };
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: `Successfully added ₹${topupAmount} to your wallet`,
+      wallet: {
+        id: result.updatedWallet.id,
+        balance: result.updatedWallet.balance,
+      },
+      transaction: result.transaction,
+    });
+  } catch (error) {
+    console.error("Top-up wallet error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+};
+

@@ -131,19 +131,6 @@ const expenses = await prisma.expense.findMany({
 });
 
 // Get all previous settlement payments
-// 1. Start every member with zero balance
-const balances: Record<string, number> = {};
-
-for (const member of groupMembers) {
-  balances[member.userId] = 0;
-}
-
-// 2. Calculate balances from expenses
-for (const expense of expenses) {
-  // YOUR EXISTING expense/split calculation
-}
-
-// 3. Get previous settlement payments
 const previousPayments =
   await prisma.settlementPayment.findMany({
     where: {
@@ -151,20 +138,8 @@ const previousPayments =
     },
   });
 
-// 4. Apply settlement payments
-for (const payment of previousPayments) {
-  const amount = Number(payment.amount);
-
-  // Sender paid money, so they owe less
-  balances[payment.fromUserId] =
-    (balances[payment.fromUserId] ?? 0) + amount;
-
-  // Receiver received money, so they are owed less
-  balances[payment.toUserId] =
-    (balances[payment.toUserId] ?? 0) - amount;
-}
-
-
+// 1. Start every member with zero balance
+const balances: Record<string, number> = {};
 
 for (const member of groupMembers) {
   balances[member.userId] = 0;
