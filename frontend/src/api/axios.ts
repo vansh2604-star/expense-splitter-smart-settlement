@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseURL =
   import.meta.env.VITE_API_BASE_URL ||
-  "https://expense-splitter-smart-settlement.onrender.com/api";
+  "https://expense-splitter-smart-settlement-2.onrender.com/api";
 
 const api = axios.create({
   baseURL,
