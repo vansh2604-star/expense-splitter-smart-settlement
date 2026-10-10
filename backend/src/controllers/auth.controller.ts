@@ -109,7 +109,7 @@ export const register = async (
 
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: error instanceof Error ? error.message : "Internal server error",
     });
   }
 };
@@ -191,7 +191,7 @@ const loginSchema = z.object({
   
       return res.status(500).json({
         success: false,
-        message: "Internal server error",
+        message: error instanceof Error ? error.message : "Internal server error",
       });
     }
   };
@@ -335,7 +335,7 @@ export const googleLogin = async (req: Request, res: Response) => {
     }
     return res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: error instanceof Error ? error.message : "Internal server error",
     });
   }
 };

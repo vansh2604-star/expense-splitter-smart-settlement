@@ -1,6 +1,9 @@
 import { Router } from "express";
 import prisma from "../config/prisma";
+import { exec } from "child_process";
+import { promisify } from "util";
 
+const execAsync = promisify(exec);
 const router = Router();
 
 router.get("/", async (_req, res) => {
@@ -30,6 +33,29 @@ router.get("/", async (_req, res) => {
       message: "Database connection failed",
       error: error instanceof Error ? error.message : String(error),
       databaseTarget: maskedDb,
+    });
+  }
+});
+
+router.get("/migrate", async (_req, res) => {
+  try {
+    const { stdout, stderr } = await execAsync("bunx prisma db push --skip-generate", {
+      env: process.env,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Database schema pushed successfully",
+      stdout,
+      stderr,
+    });
+  } catch (error: any) {
+    console.error("Migration error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Migration failed",
+      error: error.message,
+      stderr: error.stderr,
     });
   }
 });
