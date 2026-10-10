@@ -39,7 +39,7 @@ router.get("/", async (_req, res) => {
 
 router.get("/migrate", async (_req, res) => {
   try {
-    const { stdout, stderr } = await execAsync("bunx prisma db push --skip-generate", {
+    const { stdout, stderr } = await execAsync("bunx prisma db push --accept-data-loss", {
       env: process.env,
     });
 
