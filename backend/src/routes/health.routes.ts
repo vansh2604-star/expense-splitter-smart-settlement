@@ -14,14 +14,24 @@ router.get("/", async (_req, res) => {
   } catch (error) {
     console.error("Database health check failed:", error);
 
+    const dbUrl = process.env.DATABASE_URL || "";
+    let maskedDb = "not set";
+    if (dbUrl) {
+      try {
+        const parsed = new URL(dbUrl);
+        maskedDb = `${parsed.protocol}//${parsed.username}:***@${parsed.host}${parsed.pathname}`;
+      } catch {
+        maskedDb = "configured";
+      }
+    }
+
     res.status(500).json({
       success: false,
       message: "Database connection failed",
+      error: error instanceof Error ? error.message : String(error),
+      databaseTarget: maskedDb,
     });
   }
 });
 
 export default router;
-
-
-
